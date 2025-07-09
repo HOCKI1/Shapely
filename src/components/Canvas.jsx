@@ -198,7 +198,7 @@ export default function Canvas({ stageRef }) {
       }
 
       if (!selectedId && activeTool) {
-        // сбрасываем флаги
+        
         wasDeselected.current = false;
         wasEmptyClick.current = false;
 
@@ -259,7 +259,7 @@ export default function Canvas({ stageRef }) {
             x: minX,
             y: minY,
             points: relativePoints,
-            cornerRadii: [0, 0, 0], // ← теперь уголки есть
+            cornerRadii: [0, 0, 0],
             fill: "#14b8a6",
           });
         }
