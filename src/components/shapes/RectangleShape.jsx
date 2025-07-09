@@ -125,8 +125,8 @@ export default function RectangleShape({ shape }) {
       height={shape.height}
       fill={shape.fill}
       opacity={shape.opacity ?? 1}
-      offsetX={isRotated ? shape.width / 2 : 0}
-      offsetY={isRotated ? shape.height / 2 : 0}
+      offsetX={shape.width / 2}
+      offsetY={shape.height / 2}
       rotation={shape.rotation || 0}
       draggable={selectedId === shape.id}
       onClick={() => setSelectedId(shape.id)}
@@ -139,8 +139,15 @@ export default function RectangleShape({ shape }) {
         if (showGrid && !snappedToGuideline.current) {
           x = snapToGrid(x, gridSpacing);
           y = snapToGrid(y, gridSpacing);
+
+          x = Math.round(x);
+          y = Math.round(y);
+
           e.target.position({ x, y });
         }
+
+        x = Math.round(x);
+        y = Math.round(y);
 
         updateShape(shape.id, { x, y });
         clearGuidelines();

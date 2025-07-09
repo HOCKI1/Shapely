@@ -221,7 +221,7 @@ export default function Canvas({ stageRef }) {
             x,
             y,
             width: 100,
-            height: 60,
+            height: 100,
             fill: "#4f46e5",
           });
         }
@@ -240,9 +240,9 @@ export default function Canvas({ stageRef }) {
 
         if (activeTool === "triangle") {
           const rawPoints = [
-            { x: x, y: y - 200 },
-            { x: x - 200, y: y + 200 },
-            { x: x + 200, y: y + 200 },
+            { x: x, y: y - 50 },
+            { x: x - 50, y: y + 50 },
+            { x: x + 50, y: y + 50 },
           ];
 
           const minX = Math.min(...rawPoints.map((p) => p.x));
@@ -259,7 +259,7 @@ export default function Canvas({ stageRef }) {
             x: minX,
             y: minY,
             points: relativePoints,
-            cornerRadii: [0, 0, 0], // ← теперь уголки есть
+            cornerRadii: [0, 0, 0],
             fill: "#14b8a6",
           });
         }

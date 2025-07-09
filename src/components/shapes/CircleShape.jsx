@@ -138,8 +138,8 @@ export default function CircleShape({ shape }) {
       y={shape.y}
       radiusX={shape.radiusX}
       radiusY={shape.radiusY}
-      offsetX={shape.radiusX}
-      offsetY={shape.radiusY}
+      offsetX={0}
+      offsetY={0}
       fill={shape.fill}
       opacity={shape.opacity ?? 1}
       rotation={shape.rotation || 0}
@@ -157,30 +157,40 @@ export default function CircleShape({ shape }) {
           e.target.position({ x, y });
         }
 
-        updateShape(shape.id, { x, y });
+        updateShape(shape.id, {
+          x: Math.round(x),
+          y: Math.round(y),
+        });
+
         clearGuidelines();
       }}
       onTransformEnd={(e) => {
         const node = e.target;
         const scaleX = node.scaleX();
         const scaleY = node.scaleY();
+        const rotation = node.rotation();
+
+        // Сброс скейла сразу
         node.scaleX(1);
         node.scaleY(1);
 
-        let radiusX = node.radiusX() * scaleX;
-        let radiusY = node.radiusY() * scaleY;
+        const wasScaled =
+          Math.abs(scaleX - 1) > 0.01 || Math.abs(scaleY - 1) > 0.01;
 
-        if (showGrid) {
+        let radiusX = shape.radiusX * scaleX;
+        let radiusY = shape.radiusY * scaleY;
+
+        if (wasScaled && showGrid) {
           radiusX = snapToGrid(radiusX, gridSpacing);
           radiusY = snapToGrid(radiusY, gridSpacing);
         }
 
         updateShape(shape.id, {
-          x: node.x(),
-          y: node.y(),
-          radiusX: Math.max(5, radiusX),
-          radiusY: Math.max(5, radiusY),
-          rotation: node.rotation(),
+          x: Math.round(node.x()),
+          y: Math.round(node.y()),
+          radiusX: Math.max(5, Math.round(radiusX)),
+          radiusY: Math.max(5, Math.round(radiusY)),
+          rotation: Math.round(rotation),
         });
       }}
     />

@@ -8,27 +8,25 @@ export const useCanvasStore = create(
     height: 1080,
     bgColor: "white",
     isCreated: false,
-
-    // Сетка
     showGrid: true,
     gridSpacing: 50,
-
-    // Инструмент
     activeTool: null,
-
-    // Фигуры
     shapes: [],
-
-    // Выбор
     selectedId: null,
-
-    // === Actions ===
 
     createNewFile: ({ width, height, bgColor }) =>
       set({
         width,
         height,
-        bgColor,
+        bgColor:
+          bgColor === "white"
+            ? "#ffffff"
+            : bgColor === "black"
+            ? "#000000"
+            : "transparent",
+        shapes: [],
+        selectedId: null,
+        guidelines: [],
         isCreated: true,
       }),
 
@@ -56,7 +54,7 @@ export const useCanvasStore = create(
 
     addShape: (shape) =>
       set((state) => {
-        console.log("✅ addShape called", shape);
+        console.log("addShape called", shape);
         return { shapes: [...state.shapes, shape] };
       }),
 

@@ -57,6 +57,7 @@ export default function CreateFileModal({ onClose, onCreate }) {
           </button>
           <button
             onClick={() => {
+              console.log("Creating file with:", { width, height, bgColor });
               createNewFile({ width, height, bgColor });
               onClose();
             }}
