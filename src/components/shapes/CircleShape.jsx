@@ -71,7 +71,6 @@ export default function CircleShape({ shape }) {
     for (const other of shapes) {
       if (other.id === shape.id) continue;
 
-      // Поддержка для других типов фигур — определяем "бокс" для привязок
       const otherBox = {
         x: other.x - (other.radiusX ?? other.width / 2 ?? 0),
         y: other.y - (other.radiusY ?? other.height / 2 ?? 0),
