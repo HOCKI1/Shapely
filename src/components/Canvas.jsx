@@ -198,7 +198,7 @@ export default function Canvas({ stageRef }) {
       }
 
       if (!selectedId && activeTool) {
-        // сбрасываем флаги
+        
         wasDeselected.current = false;
         wasEmptyClick.current = false;
 
