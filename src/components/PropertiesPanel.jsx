@@ -36,7 +36,7 @@ export default function PropertiesPanel() {
         </div>
       </div>
 
-      {/* Size */}
+      {/* Размер */}
       {shape.type === "rectangle" && (
         <>
           <div className="flex gap-2">
@@ -129,7 +129,8 @@ export default function PropertiesPanel() {
           </div>
         </>
       )}
-
+      
+      {/* Точки треугольника */}
       {shape.type === "triangle" &&
         shape.points.map((point, index) => (
           <div key={index} className="mb-2">
@@ -161,6 +162,7 @@ export default function PropertiesPanel() {
           </div>
         ))}
 
+      {/* Углы треугольника */}
       {shape.type === "triangle" && (
         <div className="grid grid-cols-3 gap-2 mt-4">
           {[0, 1, 2].map((i) => (
@@ -183,7 +185,7 @@ export default function PropertiesPanel() {
         </div>
       )}
 
-      {/* Circle */}
+      {/* Размеры круга */}
 
       {shape.type === "circle" && (
         <div className="grid grid-cols-2 gap-2 mt-4">
@@ -216,7 +218,7 @@ export default function PropertiesPanel() {
         </div>
       )}
 
-      {/* Fill */}
+      {/* Заливка */}
       <div>
         <label className="block">Цвет</label>
         <input
@@ -227,7 +229,7 @@ export default function PropertiesPanel() {
         />
       </div>
 
-      {/* Rotation */}
+      {/* Повороты */}
       {shape.type !== "triangle" && (
         <div>
           <label className="block">Поворот (°)</label>
@@ -242,7 +244,7 @@ export default function PropertiesPanel() {
         </div>
       )}
 
-      {/* Opacity */}
+      {/* Прозрачность */}
       <div>
         <label className="block">Прозрачность (0-1)</label>
         <input
